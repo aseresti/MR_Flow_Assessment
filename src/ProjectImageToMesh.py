@@ -12,7 +12,6 @@ class ImageAnalysisProjectImageToMesh():
 			self.Args.OutputFileName = f"./{Path(self.Args.InputFileName2).stem}_{Path(self.Args.InputFileName1).stem}.{Path(self.Args.InputFileName2).suffix}"
 			print ("--- OutputFileName not provided...")
 			print ("--- Using %s"%self.Args.OutputFileName)
-			
 	def Main(self):
 		#Read the source data
 		print ("--- Loading the source data: %s"%self.Args.InputFileName1)
@@ -25,9 +24,7 @@ class ImageAnalysisProjectImageToMesh():
 		else:
 			print ("Input file format not detected. Exiting...")
 			exit(1)
-
-		print ("--- Loading the target volume/surface mesh: %s"%self.Args.InputFileName2)
-                
+		print ("--- Loading the target volume/surface mesh: %s"%self.Args.InputFileName2)         
 		if self.Args.InputFileName2[-4:]==".vtu":
 			TargetData=ReadVTUFile(self.Args.InputFileName2)
 		elif self.Args.InputFileName2[-4:]==".vtp":
@@ -35,8 +32,6 @@ class ImageAnalysisProjectImageToMesh():
 		else:
 			print ("Target mesh format not detected. Exiting...")
 			exit(1)	
-
-
 		print ("--- Create a probe filter to interpolate source to target")
 		ProbeFilter=vtk.vtkProbeFilter()
 		ProbeFilter.SetInputData(TargetData)
@@ -44,25 +39,16 @@ class ImageAnalysisProjectImageToMesh():
 		ProbeFilter.PassPointArraysOn()
 		ProbeFilter.Update()
 		ProbeOutput=ProbeFilter.GetOutput()
-		
 		print ("--- Write the output file in the same format as target data")
 		WriteVTUFile(self.Args.OutputFileName,ProbeOutput)		
-		
-
 if __name__=="__main__":
         #Description
 	parser = argparse.ArgumentParser(description="This script will extract the image intensities and interpolate them onto a volumetric mesh.")
-
 	parser.add_argument('-InputFileName1', '--InputFileName1', type=str, required=True, dest="InputFileName1",help="File name of the source data")
-        
 	parser.add_argument('-ArrayName', '--ArrayName', type=str, required=False, dest="scalars",help="The array name that contains the image intensitites.")
-        
 	#Input filename of the coronary segmented surface.
 	parser.add_argument('-InputFileName2', '--InputMesh', type=str, required=True, dest="InputFileName2",help="File name of the input mesh/surface on which to project from the source data")
-        
 	parser.add_argument('-OutputFileName', '--OutputFileName', type=str, required=False, dest="OutputFileName",help="File name in which to store the image intensitites.")
-        
 	args=parser.parse_args()
-       
 	ImageAnalysisProjectImageToMesh(args).Main()
 
