@@ -3,10 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 /Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/0_raw_dataset
-/Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/1_Registered
-/Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/1_Registered_VTI_format
+/Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/1_VTI_format_dataset
 /Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/2_SimVascularProjects
-/Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/3_ProjectedVolumes
+/Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/3_Projection
+/Users/ana/Documents/AnahitaSeresti/MR_Flow_Assessment/old
 
 # C extensions
 *.so
