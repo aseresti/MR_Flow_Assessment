@@ -1,7 +1,7 @@
 import vtk
 import numpy as np
 from utilities import vtk_to_numpy, numpy_to_vtk
-import os
+from pathlib import Path
 from glob import glob
 import argparse
 from utilities import *
@@ -9,7 +9,7 @@ class ImageAnalysisProjectImageToMesh():
 	def __init__(self,Args):
 		self.Args=Args
 		if self.Args.OutputFileName is None:
-			self.Args.OutputFileName=self.Args.InputFileName2[0:-4]+"_"+self.Args.InputFileName1.split("/")[-1][0:-4]+self.Args.InputFileName2[-4:]
+			self.Args.OutputFileName = f"./{Path(self.Args.InputFileName2).stem}_{Path(self.Args.InputFileName1).stem}.{Path(self.Args.InputFileName2).suffix}"
 			print ("--- OutputFileName not provided...")
 			print ("--- Using %s"%self.Args.OutputFileName)
 			
