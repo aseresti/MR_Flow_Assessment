@@ -9,7 +9,7 @@ class ImageAnalysisProjectImageToMesh():
 	def __init__(self,Args):
 		self.Args=Args
 	def Main(self):
-		OutputFileName = f"./{Path(self.Args.InputFileName2).stem}_{Path(self.Args.InputFileName1).stem}.{Path(self.Args.InputFileName2).suffix}"
+		OutputFileName = f"{Path(self.Args.InputFileName1).stem}{Path(self.Args.InputFileName2).suffix}"
 		#Read the source data
 		print ("--- Loading the source data: %s"%self.Args.InputFileName1)
 		if self.Args.InputFileName1[-4:]==".vti":
